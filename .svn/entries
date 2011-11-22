@@ -1,0 +1,93 @@
+10
+
+dir
+15788
+svn://source.pentaho.org/svnkettleroot/Kettle/trunk/src-plugins/birt-output
+svn://source.pentaho.org/svnkettleroot
+
+
+
+2011-09-16T11:42:05.769906Z
+15777
+mcasters
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5fb7f6ec-07c1-534a-b4ca-9155e429e800
+
+build-res
+dir
+
+
+
+add
+
+build.properties
+file
+0
+
+
+add
+
+build.xml
+file
+0
+
+
+add
+
+dev-lib
+dir
+
+
+
+add
+
+ivy.xml
+file
+0
+
+
+add
+
+ivysettings.xml
+file
+0
+
+
+add
+
+lib
+dir
+
+package-res
+dir
+
+
+
+add
+
+res
+dir
+
+
+
+delete
+
+src
+dir
+
+test
+dir
+

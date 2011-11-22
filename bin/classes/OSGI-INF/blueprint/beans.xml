@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+
+  <bean id="BirtOutput_StepDataInterface" class="org.pentaho.reporting.birt.plugin.BIRTOutputData" scope="prototype"/>
+
+  <bean id="BirtOutput_StepMetaInterface" class="org.pentaho.reporting.birt.plugin.BIRTOutputMeta" scope="prototype"/>
+
+  <bean id="plugin" class="org.pentaho.di.osgi.OSGIPlugin">
+    <property name="mainType" value="org.pentaho.di.trans.step.StepMetaInterface"/>
+    <property name="name" value="BirtOutput"/>
+    <property name="ID" value="BirtOutput"/>
+    <property name="imageFile" value="/org/pentaho/reporting/birt/plugin/birt.png"/>
+    <property name="description" value="BIRT Output Step"/>
+    <property name="pluginTypeInterface" value="org.pentaho.di.core.plugins.StepPluginType"/>
+    <property name="category" value="Output"/>
+  </bean>
+
+  
+  <!-- Register the plugin as a service so Kettle can find it -->
+  <service id="pluginService" interface="org.pentaho.di.core.plugins.PluginInterface" ref="plugin">
+      <service-properties>
+          <entry key="PluginType" value="org.pentaho.di.core.plugins.StepPluginType"/>
+      </service-properties>
+  </service>
+
+</blueprint>

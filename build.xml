@@ -1,0 +1,52 @@
+<!--===========================================================================
+  This is the build file for the Pentaho Kettle Google Docs Plugin project.
+  
+  This build file will use the subfloor.xml file as the default build
+  process and should only override the tasks that need to differ from
+  the common build file.
+  
+  See subfloor.xml for more details
+============================================================================-->
+<project name="Birt Output Plugin" basedir="." default="dist"
+  xmlns:ivy="antlib:org.apache.ivy.ant" >
+  
+  <description>
+    Utilities for OSGI development
+  </description>
+
+  <import file="build-res/subfloor-pkg.xml" />
+
+  <target name="jar"
+          depends="compile,set-build.id"
+          description="Jars up the bin directory after a compile">
+    <jar destfile="${dist.dir}/${ivy.artifact.id}-${project.revision}.jar">
+      <manifest>
+        <attribute name="Implementation-Title" value="${impl.title}" />
+        <attribute name="Implementation-Version" value="${project.revision}.${build.id}" />
+        <attribute name="Implementation-Vendor" value="${impl.vendor}" />
+        <attribute name="Implementation-ProductID" value="${impl.productID}" />
+        <attribute name="Export-Package" value="org.pentaho.reporting.birt.plugin"/>
+        <attribute name="Import-Package" value=" OSGI-INF;resolution:=optional,OSGI-INF.blueprint;resolution:=optional,org.apache.commons.vfs;resolution:=optional,org.eclipse.birt.core.framework;resolution:=optional,org.eclipse.birt.report.engine.api;resolution:=optional,org.eclipse.swt.events;resolution:=optional,org.eclipse.swt.graphics;resolution:=optional,org.eclipse.swt.layout;resolution:=optional,org.eclipse.swt.widgets;resolution:=optional,org.pentaho.di.core;resolution:=optional,org.pentaho.di.core.annotations;resolution:=optional,org.pentaho.di.core.database;resolution:=optional,org.pentaho.di.core.exception;resolution:=optional,org.pentaho.di.core.logging;resolution:=optional,org.pentaho.di.core.plugins;resolution:=optional,org.pentaho.di.core.row;resolution:=optional,org.pentaho.di.core.variables;resolution:=optional,org.pentaho.di.core.vfs;resolution:=optional,org.pentaho.di.core.xml;resolution:=optional,org.pentaho.di.i18n;resolution:=optional,org.pentaho.di.repository;resolution:=optional,org.pentaho.di.trans;resolution:=optional,org.pentaho.di.trans.step;resolution:=optional,org.pentaho.di.ui.core;resolution:=optional,org.pentaho.di.ui.core.dialog;resolution:=optional,org.pentaho.di.ui.core.widget;resolution:=optional,org.pentaho.di.ui.trans.step;resolution:=optional,org.pentaho.reporting.birt.images;resolution:=optional,org.pentaho.reporting.birt.plugin;resolution:=optional,org.pentaho.reporting.birt.plugin.messages;resolution:=optional,org.w3c.dom;resolution:=optional" />
+        <attribute name="Bundle-SymbolicName" value="org.eclipse.birt.pdi" />
+      </manifest>
+      <fileset dir="${classes.dir}" />
+    </jar>
+  </target>
+
+
+  <target name="assemble" depends="assemble.init,assemble.copy-libs">
+    <copy todir="${approot.stage.dir}" overwrite="true">
+      <fileset dir="${package.resdir}" />
+    </copy>
+
+    <copy todir="${approot.stage.dir}" overwrite="true">
+      <fileset dir="${dist.dir}" />
+    </copy>
+
+  </target>
+
+  <target name="assemble.copy-libs">
+    
+  </target>
+
+</project>
